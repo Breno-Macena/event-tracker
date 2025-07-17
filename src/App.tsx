@@ -13,12 +13,6 @@ function App() {
     setFiltro(data)
   }
 
-  // const filtrados = !filtro
-  //   ? eventos
-  //   : eventos.filter((evento) =>
-  //     filtro!.toISOString().slice(0, 10) === evento.inicio.toISOString().slice(0, 10)
-  //   );
-
   return (
     <RecoilRoot>
       <div className={style.App}>
