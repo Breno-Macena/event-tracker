@@ -18,6 +18,7 @@ interface IKalendEvento {
 
 const Calendario: React.FC = () => {
   const eventos = useListaDeEventos()
+
   const atualizarEvento = useAtualizarEvento()
 
   const eventosKalend = new Map<string, IKalendEvento[]>()
