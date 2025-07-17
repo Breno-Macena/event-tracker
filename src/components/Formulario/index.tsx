@@ -3,7 +3,7 @@ import style from './Formulario.module.scss';
 import { IEvento } from '../../interfaces/IEvento';
 import { obterId } from '../../util';
 import { useSetRecoilState } from 'recoil';
-import { listDeEventosState } from '../state/atom';
+import { listDeEventosState } from '../../state/atom';
 
 const Formulario: React.FC = () => {
   const setListaDeEventos = useSetRecoilState<IEvento[]>(listDeEventosState);
