@@ -1,5 +1,6 @@
 import { selector } from 'recoil';
 import { filtroDeEventosState, listDeEventosState } from '../atom';
+import { getEventos } from '../../api';
 
 export const eventosFiltradosState = selector({
   key: 'eventosFiltradosState',
@@ -16,4 +17,9 @@ export const eventosFiltradosState = selector({
       return evento.inicio.toISOString().slice(0, 10) === filtro.data.toISOString().slice(0, 10);
     });
   }
+})
+
+export const eventosAsyncState = selector({
+  key: 'eventosAsyncState',
+  get: async () => await getEventos()
 })

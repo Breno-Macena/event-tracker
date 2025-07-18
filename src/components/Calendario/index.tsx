@@ -8,20 +8,12 @@ import { IEvento } from '../../interfaces/IEvento';
 import useAtualizarEvento from '../../state/hooks/useAtualizarEvento';
 import useListaDeEventos from '../../state/hooks/useListaDeEventos';
 
-interface IKalendEvento {
-  id?: number
-  startAt: string
-  endAt: string
-  summary: string
-  color: string
-}
-
 const Calendario: React.FC = () => {
   const eventos = useListaDeEventos()
 
   const atualizarEvento = useAtualizarEvento()
 
-  const eventosKalend = new Map<string, IKalendEvento[]>()
+  const eventosKalend = new Map<string, CalendarEvent[]>()
 
   eventos.forEach(evento => {
     const chave = evento.inicio.toISOString().slice(0, 10)
@@ -41,7 +33,7 @@ const Calendario: React.FC = () => {
     prevEvent: CalendarEvent,
     updatedEvent: CalendarEvent
   ) => {
-    const evento = eventos.find(e => e.id === prevEvent.id);
+    const evento = eventos.find(e => e.descricao === prevEvent.summary);
     if (!evento) return;
 
     const eventoAtualizado: IEvento = { ...evento };
@@ -54,7 +46,7 @@ const Calendario: React.FC = () => {
   return (
     <div className={style.Container}>
       <Kalend
-        events={Object.fromEntries(eventosKalend)}
+        events={Array.from(eventosKalend.values()).flat()}
         initialDate={new Date().toISOString()}
         hourHeight={60}
         initialView={CalendarView.WEEK}
